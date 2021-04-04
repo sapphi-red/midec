@@ -1,2 +1,4 @@
 # midec
-Golang multi-image detector. cf. Animated GIF, APNG, Animated WebP, Animated AVIF.
+
+Golang **M**ulti-**i**mage **de**te**c**tor.
+cf. Animated GIF, APNG, Animated WebP, Animated AVIF.
