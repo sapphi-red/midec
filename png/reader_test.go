@@ -5,13 +5,13 @@ import (
 	"testing"
 )
 
-const fixtureFolder = "../fixtures/png/"
+const testdataFolder = "../testdata/png/"
 
 func Test_isAnimated(t *testing.T) {
 	t.Parallel()
 
 	runIsAnimated := func(filename string) (bool, error) {
-		fp, err := os.Open(fixtureFolder + filename)
+		fp, err := os.Open(testdataFolder + filename)
 		if err != nil {
 			panic(err)
 		}

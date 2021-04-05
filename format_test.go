@@ -1,6 +1,7 @@
 package midec_test
 
 import (
+	"bufio"
 	"os"
 	"testing"
 
@@ -9,13 +10,13 @@ import (
 	_ "github.com/sapphi-red/midec/png"
 )
 
-const fixtureFolder = "fixtures/"
+const testdataFolder = "testdata/"
 
 func Test_IsAnimated(t *testing.T) {
 	t.Parallel()
 
 	runIsAnimated := func(filename string) (bool, error) {
-		fp, err := os.Open(fixtureFolder + filename)
+		fp, err := os.Open(testdataFolder + filename)
 		if err != nil {
 			panic(err)
 		}
