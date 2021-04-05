@@ -39,7 +39,7 @@ func Test_IsAnimated(t *testing.T) {
 				t.Errorf("IsAnimated = %t; want %t", actualIsAnimated, tc.expectedIsAnimated)
 			}
 			if tc.expectedHasError != (actualErr != nil) {
-				t.Errorf("HasError = %v; want %t", actualErr, tc.expectedHasError)
+				t.Errorf("Error = %v; want HasError = %t", actualErr, tc.expectedHasError)
 			}
 		})
 	}
