@@ -45,3 +45,20 @@ func Test_IsAnimated(t *testing.T) {
 		})
 	}
 }
+
+func Test_IsAnimated_WithBuffer(t *testing.T) {
+	fp, err := os.Open(testdataFolder + "gif/1.gif")
+	if err != nil {
+		panic(err)
+	}
+
+	bfp := bufio.NewReader(fp)
+
+	actualIsAnimated, actualErr := midec.IsAnimated(bfp)
+	if !actualIsAnimated {
+		t.Errorf("IsAnimated = %t; want true", actualIsAnimated)
+	}
+	if actualErr != nil {
+		t.Errorf("Error = %v; want HasError = false", actualErr)
+	}
+}
