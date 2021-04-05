@@ -25,6 +25,7 @@ func Test_isAnimated(t *testing.T) {
 	}{
 		{"1.webp", true, false},
 		{"2.webp", false, false},
+		{"3.webp", false, false},
 	}
 
 	for _, tc := range testcases {
