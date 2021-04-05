@@ -1,17 +1,13 @@
-package midec_test
+package png
 
 import (
 	"os"
 	"testing"
-
-	"github.com/sapphi-red/midec"
-	_ "github.com/sapphi-red/midec/gif"
-	_ "github.com/sapphi-red/midec/png"
 )
 
-const fixtureFolder = "fixtures/"
+const fixtureFolder = "../fixtures/png/"
 
-func Test_IsAnimated(t *testing.T) {
+func Test_isAnimated(t *testing.T) {
 	t.Parallel()
 
 	runIsAnimated := func(filename string) (bool, error) {
@@ -19,7 +15,7 @@ func Test_IsAnimated(t *testing.T) {
 		if err != nil {
 			panic(err)
 		}
-		return midec.IsAnimated(fp)
+		return isAnimated(fp)
 	}
 
 	testcases := []struct {
@@ -27,8 +23,9 @@ func Test_IsAnimated(t *testing.T) {
 		expectedIsAnimated bool
 		expectedHasError   bool
 	}{
-		{"gif/1.gif", true, false},
-		{"png/1.png", true, false},
+		{"1.png", true, false},
+		{"2.png", true, false},
+		{"3.png", false, false},
 	}
 
 	for _, tc := range testcases {
