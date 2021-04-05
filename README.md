@@ -3,7 +3,7 @@
 Golang **M**ulti-**i**mage **de**te**c**tor.
 cf. Animated GIF, APNG, Animated WebP, Animated AVIF.
 
-Supports only Animated GIF and APNG for now.
+Animated AVIF is not supported for now.
 
 ## Usage
 ```go
@@ -16,6 +16,7 @@ import (
 	"github.com/sapphi-red/midec"
 	_ "github.com/sapphi-red/midec/gif" // import this to detect Animated GIF
 	// _ "github.com/sapphi-red/midec/png" // import this to detect APNG
+	// _ "github.com/sapphi-red/midec/webp" // import this to detect Animated WebP
 )
 
 func main() {

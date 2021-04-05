@@ -8,6 +8,7 @@ import (
 	"github.com/sapphi-red/midec"
 	_ "github.com/sapphi-red/midec/gif"
 	_ "github.com/sapphi-red/midec/png"
+	_ "github.com/sapphi-red/midec/webp"
 )
 
 const testdataFolder = "testdata/"
@@ -30,6 +31,7 @@ func Test_IsAnimated(t *testing.T) {
 	}{
 		{"gif/1.gif", true, false},
 		{"png/1.png", true, false},
+		{"webp/1.webp", true, false},
 		{"invalid.txt", false, true},
 	}
 
