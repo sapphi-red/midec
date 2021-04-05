@@ -1,3 +1,4 @@
+// Package png implements a APNG detector
 package png
 
 import (

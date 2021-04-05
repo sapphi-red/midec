@@ -1,3 +1,4 @@
+// Package gif implements a Animated GIF detector
 package gif
 
 import (
