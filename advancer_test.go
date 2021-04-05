@@ -25,6 +25,7 @@ func Test_ReadAdvancer_Advance(t *testing.T) {
 	}{
 		{0, 1, true},
 		{1, 1, false},
+		{1, 256 * 3 + 1, true},
 		{256 * 3 + 1, 256 * 3 + 1, false},
 		{256 * 3 + 1, 256 * 3 + 2, true},
 	}
