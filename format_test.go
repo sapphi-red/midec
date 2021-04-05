@@ -29,6 +29,7 @@ func Test_IsAnimated(t *testing.T) {
 	}{
 		{"gif/1.gif", true, false},
 		{"png/1.png", true, false},
+		{"invalid.txt", false, true},
 	}
 
 	for _, tc := range testcases {
