@@ -79,6 +79,27 @@ func (d *decoder) skipHeader() error {
 	return err
 }
 
+func (d *decoder) skipBlocksUntilTerminator() error {
+	for {
+		blockSize, err := d.readOneByte()
+		if err != nil {
+			return err
+		}
+
+		// when block terminator
+		if blockSize == 0 {
+			return nil
+		}
+
+		err = d.Advance(
+			uint(blockSize), // Data
+		)
+		if err != nil {
+			return err
+		}
+	}
+}
+
 func (d *decoder) decodeHeaderPackedFields() (ctd colorTableData, err error) {
 	packedFields, err := d.readOneByte()
 	if err != nil {
@@ -153,22 +174,8 @@ func (d *decoder) skipImageBlock() error {
 		return err
 	}
 
-	for {
-		blockSize, err := d.decodeImageBlockBlockSize()
-		if err != nil {
-			return err
-		}
-		// when block terminator
-		if blockSize == 0 {
-			break
-		}
-
-		err = d.Advance(
-			blockSize, // Image Data
-		)
-		if err != nil {
-			return err
-		}
+	if err = d.skipBlocksUntilTerminator(); err != nil {
+		return err
 	}
 
 	return nil
@@ -186,16 +193,11 @@ func (d *decoder) skipGraphicControlExtensionBlock() error {
 }
 
 func (d *decoder) skipCommentExtensionBlock() error {
-	blockSize, err := d.readOneByte()
-	if err != nil {
+	if err := d.skipBlocksUntilTerminator(); err != nil {
 		return err
 	}
 
-	err = d.Advance(
-		uint(blockSize) + // Comment Data
-			1, // Block Terminator
-	)
-	return err
+	return nil
 }
 
 func (d *decoder) skipPlainTextExtensionBlock() error {
@@ -214,16 +216,11 @@ func (d *decoder) skipPlainTextExtensionBlock() error {
 		return err
 	}
 
-	blockSize, err := d.readOneByte()
-	if err != nil {
+	if err = d.skipBlocksUntilTerminator(); err != nil {
 		return err
 	}
 
-	err = d.Advance(
-		uint(blockSize) + // Plain Text Data
-			1, // Block Terminator
-	)
-	return err
+	return nil
 }
 
 func (d *decoder) skipApplicationExtensionBlock() error {
@@ -236,16 +233,11 @@ func (d *decoder) skipApplicationExtensionBlock() error {
 		return err
 	}
 
-	blockSize, err := d.readOneByte()
-	if err != nil {
+	if err = d.skipBlocksUntilTerminator(); err != nil {
 		return err
 	}
 
-	err = d.Advance(
-		uint(blockSize) + // Application Data
-			1, // Block Terminator
-	)
-	return err
+	return nil
 }
 
 func (d *decoder) decodeImageBlockPackedFields() (ctd colorTableData, err error) {
@@ -257,15 +249,6 @@ func (d *decoder) decodeImageBlockPackedFields() (ctd colorTableData, err error)
 	ctd.flag = packedFields&maskLocalColorTableFlag != 0
 	ctd.size = uint(packedFields & maskSizeLocalColorTable)
 	return
-}
-
-func (d *decoder) decodeImageBlockBlockSize() (uint, error) {
-	sizeByte, err := d.readOneByte()
-	if err != nil {
-		return 0, err
-	}
-
-	return uint(sizeByte), nil
 }
 
 func (d *decoder) decodeBlocks() (bool, error) {
