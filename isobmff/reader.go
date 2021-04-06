@@ -1,5 +1,5 @@
-// Package isobmmf implements a Animated HEIF / Animated AVIF detector
-package isobmmf
+// Package isobmff implements a Animated HEIF / Animated AVIF detector
+package isobmff
 
 import (
 	"encoding/binary"

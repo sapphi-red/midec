@@ -1,11 +1,11 @@
-package isobmmf
+package isobmff
 
 import (
 	"os"
 	"testing"
 )
 
-const testdataFolder = "../testdata/isobmmf/"
+const testdataFolder = "../testdata/isobmff/"
 
 func Test_isAnimated(t *testing.T) {
 	t.Parallel()
