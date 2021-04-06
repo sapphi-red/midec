@@ -30,8 +30,7 @@ func (a *ReadAdvancer) ReadFull(buf []byte) (int, error) {
 func (a *ReadAdvancer) Advance(n uint) error {
 	for n >= tmpLength {
 		buf := a.tmp[0:tmpLength]
-		_, err := a.ReadFull(buf)
-		if err != nil {
+		if _, err := a.ReadFull(buf); err != nil {
 			return err
 		}
 
@@ -40,8 +39,7 @@ func (a *ReadAdvancer) Advance(n uint) error {
 
 	if n > 0 {
 		buf := a.tmp[0:n]
-		_, err := a.ReadFull(buf)
-		if err != nil {
+		if _, err := a.ReadFull(buf); err != nil {
 			return err
 		}
 	}

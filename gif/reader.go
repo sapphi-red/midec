@@ -44,11 +44,10 @@ type decoder struct {
 
 func (d *decoder) readOneByte() (byte, error) {
 	buf := make([]byte, 1)
-	_, err := d.ReadFull(buf)
-	if err != nil {
+	if _, err := d.ReadFull(buf); err != nil {
 		return 0, err
 	}
-	return buf[0], err
+	return buf[0], nil
 }
 
 func (d *decoder) skipHeader() error {
@@ -283,8 +282,7 @@ func (d *decoder) decodeBlocks() (bool, error) {
 			return imageBlockCount >= 2, nil
 
 		case blockTypeImageBlock:
-			err = d.skipImageBlock()
-			if err != nil {
+			if err := d.skipImageBlock(); err != nil {
 				return false, err
 			}
 			imageBlockCount++
@@ -293,26 +291,22 @@ func (d *decoder) decodeBlocks() (bool, error) {
 			}
 
 		case blockTypeGraphicControlExtension:
-			err = d.skipGraphicControlExtensionBlock()
-			if err != nil {
+			if err := d.skipGraphicControlExtensionBlock(); err != nil {
 				return false, err
 			}
 
 		case blockTypeCommentExtension:
-			err = d.skipCommentExtensionBlock()
-			if err != nil {
+			if err := d.skipCommentExtensionBlock(); err != nil {
 				return false, err
 			}
 
 		case blockTypePlainTextExtension:
-			err = d.skipPlainTextExtensionBlock()
-			if err != nil {
+			if err := d.skipPlainTextExtensionBlock(); err != nil {
 				return false, err
 			}
 
 		case blockTypeApplicationExtension:
-			err = d.skipApplicationExtensionBlock()
-			if err != nil {
+			if err := d.skipApplicationExtensionBlock(); err != nil {
 				return false, err
 			}
 
@@ -321,8 +315,7 @@ func (d *decoder) decodeBlocks() (bool, error) {
 }
 
 func (d *decoder) decode() (bool, error) {
-	err := d.skipHeader()
-	if err != nil {
+	if err := d.skipHeader(); err != nil {
 		return false, err
 	}
 

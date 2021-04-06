@@ -56,14 +56,13 @@ func (d *decoder) decodeChunkHeader() (chd chunkHeaderData, err error) {
 
 func (d *decoder) decodeVP8XChunk() (bool, error) {
 	buf := make([]byte, 1)
-	_, err := d.ReadFull(buf)
-	if err != nil {
+	if _, err := d.ReadFull(buf); err != nil {
 		return false, err
 	}
 
 	isAnimation := (buf[0]&maskVP8XAnimation) != 0
 
-	err = d.Advance(
+	err := d.Advance(
 		3 + // Reserved
 		3 + // Canvas Width Minus One
 		3, // Canvas Height Minus One
@@ -80,8 +79,7 @@ func (d *decoder) skipThisChunk(dataSize uint32) error {
 }
 
 func (d *decoder) decode() (bool, error) {
-	err := d.skipHeader()
-	if err != nil {
+	if err := d.skipHeader(); err != nil {
 		return false, err
 	}
 
@@ -119,8 +117,7 @@ func (d *decoder) decode() (bool, error) {
 			}
 		}
 
-		err = d.skipThisChunk(chd.dataSize)
-		if err != nil {
+		if err := d.skipThisChunk(chd.dataSize); err != nil {
 			return false, err
 		}
 	}

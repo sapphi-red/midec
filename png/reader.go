@@ -63,8 +63,7 @@ func (d *decoder) skipUnknownChunk(length uint32) error {
 }
 
 func (d *decoder) decode() (bool, error) {
-	err := d.skipHeader()
-	if err != nil {
+	if err := d.skipHeader(); err != nil {
 		return false, err
 	}
 
@@ -82,8 +81,7 @@ func (d *decoder) decode() (bool, error) {
 			// so if IDAT comes before acTL, it is not a apng.
 			return false, nil
 		default:
-			err := d.skipUnknownChunk(chd.length)
-			if err != nil {
+			if err := d.skipUnknownChunk(chd.length); err != nil {
 				return false, err
 			}
 		}

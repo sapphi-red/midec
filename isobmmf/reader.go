@@ -114,8 +114,7 @@ func (d *decoder) findBox(targetBoxType string, dataSizeP *int64) (bool, boxHead
 			return false, boxHeaderData{}, nil
 		}
 
-		err = d.Advance(uint(bhd.dataSize))
-		if err != nil {
+		if err := d.Advance(uint(bhd.dataSize)); err != nil {
 			return false, boxHeaderData{}, err
 		}
 
@@ -127,12 +126,11 @@ func (d *decoder) findBox(targetBoxType string, dataSizeP *int64) (bool, boxHead
 
 func (d *decoder) decodeFileTypeBox() (bool, error) {
 	var size int32
-	err := d.read(&size)
-	if err != nil {
+	if err := d.read(&size); err != nil {
 		return false, err
 	}
 
-	err = d.Advance(
+	err := d.Advance(
 		4, // type
 	)
 	if err != nil {
@@ -140,8 +138,7 @@ func (d *decoder) decodeFileTypeBox() (bool, error) {
 	}
 
 	brandBuff := make([]byte, 4)
-	_, err = d.ReadFull(brandBuff)
-	if err != nil {
+	if _, err = d.ReadFull(brandBuff); err != nil {
 		return false, err
 	}
 
@@ -322,8 +319,7 @@ func (d *decoder) decode() (bool, error) {
 				hasPictTrak = isPictureType
 			}
 		default:
-			err := d.Advance(uint(bhd.dataSize))
-			if err != nil {
+			if err := d.Advance(uint(bhd.dataSize)); err != nil {
 				return false, err
 			}
 		}
