@@ -15,7 +15,7 @@ import (
 	_ "github.com/sapphi-red/midec/gif" // import this to detect Animated GIF
 	// _ "github.com/sapphi-red/midec/png" // import this to detect APNG
 	// _ "github.com/sapphi-red/midec/webp" // import this to detect Animated WebP
-	// _ "github.com/sapphi-red/midec/isobmmf" // import this to detect Animated HEIF / AVIF
+	// _ "github.com/sapphi-red/midec/isobmff" // import this to detect Animated HEIF / AVIF
 )
 
 func main() {
