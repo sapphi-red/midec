@@ -30,6 +30,7 @@ func Test_isAnimated(t *testing.T) {
 	}
 
 	for _, tc := range testcases {
+		tc := tc
 		t.Run(tc.filename, func(t *testing.T) {
 			t.Parallel()
 

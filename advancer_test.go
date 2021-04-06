@@ -31,6 +31,7 @@ func Test_ReadAdvancer_Advance(t *testing.T) {
 	}
 
 	for _, tc := range testcases {
+		tc := tc
 		name := fmt.Sprintf("%d %d", tc.byteLen, tc.advanceLen)
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
