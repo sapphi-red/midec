@@ -33,6 +33,8 @@ func Test_ReadAdvancer_Advance(t *testing.T) {
 	for _, tc := range testcases {
 		name := fmt.Sprintf("%d %d", tc.byteLen, tc.advanceLen)
 		t.Run(name, func(t *testing.T) {
+			t.Parallel()
+
 			actualErr := runAdvance(tc.byteLen, tc.advanceLen)
 			if tc.expectedHasError != (actualErr != nil) {
 				t.Errorf("Error = %v; want HasError = %t", actualErr, tc.expectedHasError)

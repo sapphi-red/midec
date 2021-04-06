@@ -39,6 +39,8 @@ func Test_IsAnimated(t *testing.T) {
 
 	for _, tc := range testcases {
 		t.Run(tc.filename, func(t *testing.T) {
+			t.Parallel()
+
 			actualIsAnimated, actualErr := runIsAnimated(tc.filename)
 			if tc.expectedIsAnimated != actualIsAnimated {
 				t.Errorf("IsAnimated = %t; want %t", actualIsAnimated, tc.expectedIsAnimated)
