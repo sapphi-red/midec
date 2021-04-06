@@ -1,9 +1,7 @@
 # midec [![Go Reference](https://pkg.go.dev/badge/github.com/sapphi-red/midec.svg)](https://pkg.go.dev/github.com/sapphi-red/midec) [![CI](https://github.com/sapphi-red/midec/actions/workflows/main.yaml/badge.svg)](https://github.com/sapphi-red/midec/actions/workflows/main.yaml) [![codecov](https://codecov.io/gh/sapphi-red/midec/branch/main/graph/badge.svg?token=H9T7BGUQ7V)](https://codecov.io/gh/sapphi-red/midec)
 
 Golang **M**ulti-**i**mage **de**te**c**tor.
-cf. Animated GIF, APNG, Animated WebP, Animated AVIF.
-
-Animated AVIF is not supported for now.
+cf. Animated GIF, APNG, Animated WebP, Animated HEIF / AVIF.
 
 ## Usage
 ```go
@@ -17,6 +15,7 @@ import (
 	_ "github.com/sapphi-red/midec/gif" // import this to detect Animated GIF
 	// _ "github.com/sapphi-red/midec/png" // import this to detect APNG
 	// _ "github.com/sapphi-red/midec/webp" // import this to detect Animated WebP
+	// _ "github.com/sapphi-red/midec/isobmmf" // import this to detect Animated HEIF / AVIF
 )
 
 func main() {
