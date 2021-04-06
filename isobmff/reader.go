@@ -339,5 +339,5 @@ func isAnimated(r io.Reader) (bool, error) {
 }
 
 func init() {
-	midec.RegisterFormat("isobmmf", isobmmfHeader, isAnimated)
+	midec.RegisterFormat("isobmff", isobmmfHeader, isAnimated)
 }
