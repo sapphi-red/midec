@@ -46,8 +46,11 @@ goos: windows
 goarch: amd64
 pkg: github.com/sapphi-red/midec
 cpu: AMD Ryzen 7 3700X 8-Core Processor
-BenchmarkGIF_ImageGIF-16            2571            440922 ns/op
-BenchmarkGIF_Midec-16             113259             10383 ns/op
+BenchmarkGIF_ImageGIF-16            2448            457726 ns/op
+BenchmarkGIF_Midec-16             108811             10854 ns/op
+BenchmarkPNG_Midec-16             188463              7170 ns/op
+BenchmarkWebP_Midec-16            113260              9534 ns/op
+BenchmarkHEIFAVIF_Midec-16        148050              8440 ns/op
 PASS
-ok      github.com/sapphi-red/midec     6.033s
+ok      github.com/sapphi-red/midec     25.453s
 ```
