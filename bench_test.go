@@ -25,67 +25,72 @@ func loadGif() *os.File {
 }
 
 func BenchmarkGIF_ImageGIF(b *testing.B) {
+	fp := loadGif()
 	for i := 0; i < b.N; i++ {
-		b.StopTimer()
-		fp := loadGif()
-		b.StartTimer()
-
 		decoded, err := gif.DecodeAll(fp)
 		if err != nil {
 			panic(err)
 		}
 		_ = len(decoded.Image)
+
+		b.StopTimer()
+		_, _ = fp.Seek(0, 0)
+		b.StartTimer()
 	}
 }
 
 func BenchmarkGIF_Midec(b *testing.B) {
+	fp := loadGif()
 	for i := 0; i < b.N; i++ {
-		b.StopTimer()
-		fp := loadGif()
-		b.StartTimer()
-
 		_, err := midec.IsAnimated(fp)
 		if err != nil {
 			panic(err)
 		}
+
+		b.StopTimer()
+		_, _ = fp.Seek(0, 0)
+		b.StartTimer()
 	}
 }
 
 func BenchmarkPNG_Midec(b *testing.B) {
+	fp := loadFile("png/1.png")
 	for i := 0; i < b.N; i++ {
-		b.StopTimer()
-		fp := loadFile("png/1.png")
-		b.StartTimer()
-
 		_, err := midec.IsAnimated(fp)
 		if err != nil {
 			panic(err)
 		}
+
+		b.StopTimer()
+		_, _ = fp.Seek(0, 0)
+		b.StartTimer()
 	}
 }
 
 func BenchmarkWebP_Midec(b *testing.B) {
+	fp := loadFile("webp/1.webp")
 	for i := 0; i < b.N; i++ {
-		b.StopTimer()
-		fp := loadFile("webp/1.webp")
-		b.StartTimer()
-
 		_, err := midec.IsAnimated(fp)
 		if err != nil {
 			panic(err)
 		}
+
+		b.StopTimer()
+		_, _ = fp.Seek(0, 0)
+		b.StartTimer()
 	}
 }
 
 func BenchmarkHEIFAVIF_Midec(b *testing.B) {
+	fp := loadFile("isobmff/1.avif")
 	for i := 0; i < b.N; i++ {
-		b.StopTimer()
-		fp := loadFile("isobmff/1.avif")
-		b.StartTimer()
-
 		_, err := midec.IsAnimated(fp)
 		if err != nil {
 			panic(err)
 		}
+
+		b.StopTimer()
+		_, _ = fp.Seek(0, 0)
+		b.StartTimer()
 	}
 }
