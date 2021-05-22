@@ -27,6 +27,13 @@ func Test_isAnimated(t *testing.T) {
 		{"animated.gif", true, false},
 		{"static1.gif", false, false},
 		{"static2.gif", false, false},
+		{"static-plaintextextension.gif", false, false},
+		{"invalid-header-length.gif", false, true},
+		{"invalid-header-packedfields.gif", false, true},
+		{"invalid-block-header.gif", false, true},
+		{"invalid-block-unknown.gif", false, true},
+		{"invalid-block-unknown2.gif", false, true},
+		{"invalid-block-unknown3.gif", false, true},
 	}
 
 	for _, tc := range testcases {
