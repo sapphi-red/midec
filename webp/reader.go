@@ -45,11 +45,14 @@ func (d *decoder) decodeChunkHeader() (chd chunkHeaderData, err error) {
 
 	dataSize, err := d.readUint32()
 	if err != nil {
+		if err == io.EOF {
+			err = io.ErrUnexpectedEOF
+		}
 		return
 	}
 
 	return chunkHeaderData{
-		fourCC: string(fourCCBuf),
+		fourCC:   string(fourCCBuf),
 		dataSize: dataSize,
 	}, nil
 }
@@ -60,12 +63,12 @@ func (d *decoder) decodeVP8XChunk() (bool, error) {
 		return false, err
 	}
 
-	isAnimation := (buf[0]&maskVP8XAnimation) != 0
+	isAnimation := (buf[0] & maskVP8XAnimation) != 0
 
 	err := d.Advance(
 		3 + // Reserved
-		3 + // Canvas Width Minus One
-		3, // Canvas Height Minus One
+			3 + // Canvas Width Minus One
+			3, // Canvas Height Minus One
 	)
 	if err != nil {
 		return false, err
