@@ -23,9 +23,13 @@ func Test_isAnimated(t *testing.T) {
 		expectedIsAnimated bool
 		expectedHasError   bool
 	}{
-		{"1.avif", true, false},
-		{"2.avif", false, false},
-		{"2.heif", false, false},
+		{"animated.avif", true, false},
+		{"static.avif", false, false},
+		{"static.heif", false, false},
+		{"movie.mp4", false, false},
+		{"invalid-filetypebox1.avif", false, true},
+		{"invalid-filetypebox2.avif", false, true},
+		{"invalid-filetypebox3.avif", false, true},
 	}
 
 	for _, tc := range testcases {

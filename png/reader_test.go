@@ -23,9 +23,13 @@ func Test_isAnimated(t *testing.T) {
 		expectedIsAnimated bool
 		expectedHasError   bool
 	}{
-		{"1.png", true, false},
-		{"2.png", true, false},
-		{"3.png", false, false},
+		{"animated.png", true, false},
+		{"static.png", false, false},
+		{"invalid-header.png", false, true},
+		{"invalid-chunk-header1.png", false, true},
+		{"invalid-chunk-header2.png", false, true},
+		{"invalid-unknown-chunk.png", false, true},
+		{"invalid-actl-chunk.png", false, true},
 	}
 
 	for _, tc := range testcases {
