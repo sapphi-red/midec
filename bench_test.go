@@ -21,7 +21,7 @@ func loadFile(file string) *os.File {
 }
 
 func loadGif() *os.File {
-	return loadFile("gif/1.gif")
+	return loadFile("gif/animated.gif")
 }
 
 func BenchmarkGIF_ImageGIF(b *testing.B) {
@@ -54,7 +54,7 @@ func BenchmarkGIF_Midec(b *testing.B) {
 }
 
 func BenchmarkPNG_Midec(b *testing.B) {
-	fp := loadFile("png/1.png")
+	fp := loadFile("png/animated.png")
 	for i := 0; i < b.N; i++ {
 		_, err := midec.IsAnimated(fp)
 		if err != nil {
@@ -68,7 +68,7 @@ func BenchmarkPNG_Midec(b *testing.B) {
 }
 
 func BenchmarkWebP_Midec(b *testing.B) {
-	fp := loadFile("webp/1.webp")
+	fp := loadFile("webp/animated.webp")
 	for i := 0; i < b.N; i++ {
 		_, err := midec.IsAnimated(fp)
 		if err != nil {
@@ -82,7 +82,7 @@ func BenchmarkWebP_Midec(b *testing.B) {
 }
 
 func BenchmarkHEIFAVIF_Midec(b *testing.B) {
-	fp := loadFile("isobmff/1.avif")
+	fp := loadFile("isobmff/animated.avif")
 	for i := 0; i < b.N; i++ {
 		_, err := midec.IsAnimated(fp)
 		if err != nil {

@@ -23,9 +23,9 @@ func Test_isAnimated(t *testing.T) {
 		expectedIsAnimated bool
 		expectedHasError   bool
 	}{
-		{"1.webp", true, false},
-		{"2.webp", false, false},
-		{"3.webp", false, false},
+		{"animated.webp", true, false},
+		{"static-vp8.webp", false, false},
+		{"static-vp8x.webp", false, false},
 	}
 
 	for _, tc := range testcases {

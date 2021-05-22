@@ -30,10 +30,10 @@ func Test_IsAnimated(t *testing.T) {
 		expectedIsAnimated bool
 		expectedHasError   bool
 	}{
-		{"gif/1.gif", true, false},
-		{"png/1.png", true, false},
-		{"webp/1.webp", true, false},
-		{"isobmff/1.avif", true, false},
+		{"gif/animated.gif", true, false},
+		{"png/animated.png", true, false},
+		{"webp/animated.webp", true, false},
+		{"isobmff/animated.avif", true, false},
 		{"invalid.txt", false, true},
 	}
 
@@ -54,7 +54,7 @@ func Test_IsAnimated(t *testing.T) {
 }
 
 func Test_IsAnimated_WithBuffer(t *testing.T) {
-	fp, err := os.Open(testdataFolder + "gif/1.gif")
+	fp, err := os.Open(testdataFolder + "gif/animated.gif")
 	if err != nil {
 		panic(err)
 	}
