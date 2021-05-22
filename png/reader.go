@@ -58,7 +58,7 @@ func (d *decoder) decodeacTLChunk() (bool, error) {
 func (d *decoder) skipUnknownChunk(length uint32) error {
 	return d.Advance(
 		uint(length) + // data
-		4, // CRC
+			4, // CRC
 	)
 }
 
