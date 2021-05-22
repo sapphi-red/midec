@@ -1,9 +1,9 @@
 # midec [![Go Reference](https://pkg.go.dev/badge/github.com/sapphi-red/midec.svg)](https://pkg.go.dev/github.com/sapphi-red/midec) [![CI](https://github.com/sapphi-red/midec/actions/workflows/main.yaml/badge.svg)](https://github.com/sapphi-red/midec/actions/workflows/main.yaml) [![codecov](https://codecov.io/gh/sapphi-red/midec/branch/main/graph/badge.svg?token=H9T7BGUQ7V)](https://codecov.io/gh/sapphi-red/midec)
 
-Pure go **M**ulti-**i**mage **de**te**c**tor.
+Pure go **m**ulti-**i**mage **de**te**c**tor.
 cf. Animated GIF, APNG, Animated WebP, Animated HEIF / AVIF.
 
-Checks whether the image is an multi-image(animated image).
+Checks whether the image is a multi-image(animated image).
 
 ## Usage
 ```go
