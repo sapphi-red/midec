@@ -26,6 +26,7 @@ func Test_isAnimated(t *testing.T) {
 		{"animated.webp", true, false},
 		{"static-vp8.webp", false, false},
 		{"static-vp8x.webp", false, false},
+		{"static-vp8x-1frame.webp", false, false},
 	}
 
 	for _, tc := range testcases {

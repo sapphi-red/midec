@@ -104,7 +104,7 @@ func (d *decoder) decode() (bool, error) {
 	for {
 		chd, err := d.decodeChunkHeader()
 		if err != nil {
-			if err != io.EOF {
+			if err == io.EOF {
 				return false, nil
 			}
 			return false, err
