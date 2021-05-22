@@ -68,7 +68,7 @@ func (d *decoder) decodeVP8XChunk() (bool, error) {
 		3, // Canvas Height Minus One
 	)
 	if err != nil {
-		return false, nil
+		return false, err
 	}
 
 	return isAnimation, nil
